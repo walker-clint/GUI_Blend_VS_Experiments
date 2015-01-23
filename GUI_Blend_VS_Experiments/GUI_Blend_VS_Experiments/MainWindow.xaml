@@ -1,8 +1,8 @@
 ﻿<Window x:Class="GUI_Blend_VS_Experiments.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
+        Title="GUI_Experiments" Height="350" Width="525">
+    <Grid Background="#FFA69E9E" OpacityMask="#FFA45F5F">
         
     </Grid>
 </Window>
