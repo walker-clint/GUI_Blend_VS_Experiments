@@ -1,0 +1,49 @@
+﻿<Page x:Class="Dispatchr.Client.Views.AboutPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:ViewModels="using:Dispatchr.Client.ViewModels"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="using:Dispatchr.Client.Views"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:storeApps="using:Microsoft.Practices.Prism.StoreApps"
+      xmlns:mvvm="using:Microsoft.Practices.Prism.Mvvm"
+      xmlns:controls="using:Dispatchr.Client.Controls"
+      Background="{StaticResource AppBackground}"
+      mc:Ignorable="d">
+
+
+    <Hub>
+        <Hub.HeaderTemplate>
+            <DataTemplate>
+                <Image Margin="0,20,0,0"
+                       HorizontalAlignment="Left"
+                       Source="/Assets/Logos/PhoneLogo.png"
+                       Stretch="None" />
+
+            </DataTemplate>
+
+        </Hub.HeaderTemplate>
+
+        <HubSection Header="ABOUT">
+            <DataTemplate>
+                <ScrollViewer>
+                    <StackPanel>
+                        <TextBlock Style="{StaticResource TitleTextBlockStyle}"
+                                   Margin="0,0,0,10"
+                                   TextWrapping="Wrap">
+                            <TextBlock.Text>
+                                MVA Sample for Universal Apps
+                            </TextBlock.Text>
+                        </TextBlock>
+                        <TextBlock TextWrapping="Wrap"
+                                   Margin="20,0,0,10"
+                                   Style="{StaticResource BodyTextBlockStyle}">
+Solarizr demonstrates a number of techniques that can be useful for building Universal Windows Applications.                        </TextBlock>
+                    </StackPanel>
+                </ScrollViewer>
+            </DataTemplate>
+        </HubSection>
+
+    </Hub>
+
+</Page>

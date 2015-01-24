@@ -1,0 +1,114 @@
+﻿<Page x:Class="Dispatchr.Client.Views.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:Converters="using:Dispatchr.Client.Converters"
+      xmlns:controls="using:Dispatchr.Client.Controls"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:prismmvvm="using:Microsoft.Practices.Prism.Mvvm"
+      xmlns:designTimeData="using:Dispatchr.Client.DesignTimeData"
+      Background="{StaticResource AppBackground}"
+      d:DataContext="{d:DesignInstance designTimeData:MainPageViewModel}"
+      prismmvvm:ViewModelLocator.AutoWireViewModel="True"
+      mc:Ignorable="d">
+
+    <Page.Resources>
+        <Converters:InverseBooleanConverter x:Key="InverseBooleanConverter" />
+    </Page.Resources>
+
+    <Page.BottomAppBar>
+        <CommandBar IsEnabled="{Binding Loading, Converter={StaticResource InverseBooleanConverter}, Mode=OneWay}">
+            <CommandBar.SecondaryCommands>
+                <AppBarButton Command="{Binding AboutCommand}"
+                              Label="About" />
+                <AppBarButton Command="{Binding PrivacyCommand}"
+                              Label="Privacy" />
+            </CommandBar.SecondaryCommands>
+            <AppBarButton Icon="Setting"
+                          Label="Settings"
+                          Command="{Binding OpenSettingsCommand}"/>
+        </CommandBar>
+    </Page.BottomAppBar>
+
+    <Grid>
+        <Pivot Padding="0">
+
+            <Pivot.TitleTemplate>
+                <DataTemplate>
+                    <Image Margin="0,-30,0,0"
+                           HorizontalAlignment="Left"
+                           Source="/Assets/Logos/PhoneLogo.png"
+                           Stretch="None" />
+
+                </DataTemplate>
+            </Pivot.TitleTemplate>
+            <Pivot.HeaderTemplate>
+                <DataTemplate>
+                    <TextBlock FontSize="40"
+                               FontWeight="Light"
+                               Text="{Binding}" />
+                </DataTemplate>
+            </Pivot.HeaderTemplate>
+            <PivotItem Header="home" Padding="0,-30,0,0">
+                <ScrollViewer>
+                    <ListView Grid.Row="0"
+                              x:Name="listView"
+                              IsItemClickEnabled="True"
+                              ItemsSource="{Binding Appointments}"
+                              SelectionMode="None"
+                              ItemClick="listView_ItemClick">
+                        <ItemsControl.ItemTemplateSelector>
+                            <controls:HeroTemplateSelector HeroTemplate="{StaticResource HubHeroTemplate}"
+                                                           NormalTemplate="{StaticResource HubNormalTemplate}" />
+                        </ItemsControl.ItemTemplateSelector>
+                    </ListView>
+                </ScrollViewer>
+            </PivotItem>
+            <PivotItem Header="appointments">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Rectangle Fill="LightBlue" />
+                    <!--
+                        <Image x:Name="TempImage"
+                        Source="/Assets/SplashScreen.scale-100.png"
+                        Stretch="Fill"/>
+                    -->
+                    <controls:MapView x:Name="MapView"
+                                      Grid.Row="0"
+                                      MinHeight="100"
+                                      HorizontalAlignment="Stretch"
+                                      Appointments="{Binding Appointments}"
+                                      Zoom="4" />
+                    <Grid Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Rectangle Height="42"
+                                   Fill="Black"
+                                   ManipulationCompleted="AppointmentDragBarManipulationCompleted"
+                                   ManipulationDelta="AppointmentDragBarManipulationDelta"
+                                   ManipulationMode="All"
+                                   ManipulationStarted="AppointmentDragBarManipulationStarted"
+                                   Opacity="0.01" />
+
+                        <ListView x:Name="AppointmentListView"
+                                  Grid.Row="1"
+                                  Height="70"
+                                  MinHeight="70"
+                                  MaxHeight="400"
+                                  ItemTemplate="{StaticResource AppointmentTemplate}"
+                                  ItemsSource="{Binding Appointments}" />
+                    </Grid>
+
+                </Grid>
+            </PivotItem>
+
+        </Pivot>
+        <controls:Loading Text="Loading..." 
+                          Visibility="{Binding Loading, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}" />
+    </Grid>
+</Page>

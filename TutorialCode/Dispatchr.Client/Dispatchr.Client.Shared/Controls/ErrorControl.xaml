@@ -1,0 +1,106 @@
+﻿<UserControl x:Class="Dispatchr.Client.Controls.ErrorControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:Converters="using:Dispatchr.Client.Converters"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="using:Dispatchr.Client.Controls"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d:DesignHeight="300"
+             d:DesignWidth="400"
+             mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <Converters:BooleanNegationConverter x:Key="BooleanNegationConverter" />
+        <Converters:VisibleWhenFalseConverter x:Key="VisibleWhenFalseConverter" />
+        <SolidColorBrush x:Name="ErrorColor"
+                         Opacity=".75"
+                         Color="Red" />
+    </UserControl.Resources>
+
+    <Grid>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="VisualStateGroup">
+                <VisualState x:Name="LeftVisualState">
+                    <Storyboard>
+                		<DoubleAnimation Duration="0"
+                			Storyboard.TargetName="LeftButton"
+                			Storyboard.TargetProperty="(UIElement.Opacity)"
+                			To="1"
+                			d:IsOptimized="True" />
+                		<DoubleAnimation Duration="0"
+                			Storyboard.TargetName="RightButton"
+                			Storyboard.TargetProperty="(UIElement.Opacity)"
+                			To="0"
+                			d:IsOptimized="True" />
+                	</Storyboard>
+                </VisualState>
+                <VisualState x:Name="RightVisualState">
+                    <Storyboard>
+                		<DoubleAnimation Duration="0"
+                			Storyboard.TargetName="LeftButton"
+                			Storyboard.TargetProperty="(UIElement.Opacity)"
+                			To="0"
+                			d:IsOptimized="True" />
+                		<DoubleAnimation Duration="0"
+                			Storyboard.TargetName="RightButton"
+                			Storyboard.TargetProperty="(UIElement.Opacity)"
+                			To="1"
+                			d:IsOptimized="True" />
+                	</Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <ContentPresenter x:Name="MyPresenter" />
+        <Button x:Name="RightButton"
+                Width="32"
+                Height="32"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                IsHitTestVisible="{Binding IsValid,
+                                           Converter={StaticResource BooleanNegationConverter}}"
+                IsTabStop="False"
+                Opacity="0.5"
+                RenderTransformOrigin="0.5,0.5"
+                Style="{StaticResource TextBlockButtonStyle}">
+            <Button.RenderTransform>
+                <CompositeTransform TranslateX="40" />
+            </Button.RenderTransform>
+            <Button.Flyout>
+                <Flyout Placement="Left">
+                    <ItemsControl ItemsSource="{Binding Errors}" />
+                </Flyout>
+            </Button.Flyout>
+            <Ellipse Margin="10"
+                     Fill="{StaticResource ErrorColor}"
+                     IsHitTestVisible="False"
+                     Opacity="{Binding Errors.Count}"
+                     Stretch="Uniform" />
+        </Button>
+        <Button x:Name="LeftButton"
+                Width="32"
+                Height="32"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                IsHitTestVisible="{Binding IsValid,
+                                           Converter={StaticResource BooleanNegationConverter}}"
+                IsTabStop="False"
+                Opacity="0.5"
+                RenderTransformOrigin="0.5,0.5"
+                Style="{StaticResource TextBlockButtonStyle}">
+            <Button.RenderTransform>
+                <CompositeTransform TranslateX="-40" />
+            </Button.RenderTransform>
+            <Button.Flyout>
+                <Flyout Placement="Right">
+                    <ItemsControl ItemsSource="{Binding Errors}" />
+                </Flyout>
+            </Button.Flyout>
+            <Ellipse Margin="10"
+                     Fill="{StaticResource ErrorColor}"
+                     IsHitTestVisible="False"
+                     Opacity="{Binding Errors.Count}"
+                     Stretch="Uniform" />
+        </Button>
+    </Grid>
+
+</UserControl>

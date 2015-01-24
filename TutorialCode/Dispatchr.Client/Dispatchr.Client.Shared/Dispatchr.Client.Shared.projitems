@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="SharedProjectFile_SccProperties">
+    <SharedProjectFile_ProjectGuid>{2b1747b8-4b74-4003-9c8e-9568eb89d00b}</SharedProjectFile_ProjectGuid>
+    <SharedProjectFile_SccProjectName>SAK</SharedProjectFile_SccProjectName>
+    <SharedProjectFile_SccAuxPath>SAK</SharedProjectFile_SccAuxPath>
+    <SharedProjectFile_SccLocalPath>SAK</SharedProjectFile_SccLocalPath>
+    <SharedProjectFile_SccProvider>SAK</SharedProjectFile_SccProvider>
+  </PropertyGroup>
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>0307deef-9ff3-4418-9630-9fc38effb608</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Dispatchr.Client</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="$(MSBuildThisFileDirectory)App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Behaviors\KeyNavBehavior.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Behaviors\OrientationBehavior.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\Extensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\ItemsControlHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\IVariableSizedItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\MapExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\Property.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\StorageHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\SuspensionManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\VariableSizes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\ErrorControl.xaml.cs">
+      <DependentUpon>ErrorControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\HeroGridView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\HeroItemDataTemplateSelector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Loading.xaml.cs">
+      <DependentUpon>Loading.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\MapView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\BooleanNegationConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\BooleanToVisibilityConvertery.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\IdToStatusEnumConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\InverseBooleanConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\InverseBooleanToVisibilityConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\DateTimeConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\MultiplyConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\StringFormatConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\VisibleWhenFalseConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\VisibleWhenPhoneConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\VisibleWhenTrueConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\VisibleWhenWindowsConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DesignTimeData\AppointmentItemViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DesignTimeData\AppointmentViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DesignTimeData\HeaderViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DesignTimeData\LoginPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DesignTimeData\MainPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DesignTimeData\SettingsViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LocalSQLite\Repositories\AppointmentSQLiteRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LocalSQLite\Repositories\PhotoSQLiteRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LocalSQLite\Repositories\StatusSQLiteRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Messages\AppointmentPositionChanged.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Messages\AuthLogin.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Messages\AuthLogout.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Messages\MapPinTapped.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Messages\ReloadAppointments.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Appointment.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\IModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ModelBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Photo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Upload.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ServiceProxies\AppointmentServiceProxy\AppointmentServiceProxy.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ServiceProxies\AppointmentServiceProxy\IAppointmentServiceProxy.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ServiceProxies\UserServiceProxy\IUserServiceProxy.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ServiceProxies\UserServiceProxy\UserServiceProxy.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SampleData\Factory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\AdalService\AdalService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\BlobService\BlobHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\BlobService\IBlobService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\DialogService\DialogViewService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\DialogService\IDialogService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\DispatcherService\DispatcherService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\DispatcherService\IDispatcherService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\KeyboardService\IKeyboardService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\KeyboardService\KeyboardHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\KeyboardService\KeyboardService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\LaunchTimeService\ILaunchTimeService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\LaunchTimeService\LaunchTimeHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\LaunchTimeService\LaunchTimeService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\LocationService\ILocationService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\LocationService\LocationHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\LocationService\LocationService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\MainfestService\IManifestService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\MainfestService\ManifestHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\MainfestService\ManifestService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\MapService\IMapService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\MapService\MapHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\MapService\MapService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\NavigationService\INavigationService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\NetworkAvailableService\INetworkAvailableService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\NetworkAvailableService\NetworkAvailableHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\NetworkAvailableService\NetworkAvailableService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\NotificationHubService\INotificationHubService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\NotificationHubService\NotificationHubHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\NotificationHubService\NotificationHubService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\PrimaryTileService\IPrimaryTileService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\PrimaryTileService\PrimaryTileHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\PrimaryTileService\PrimaryTileService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\PrintContractService\IPrintContractService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\PrintContractService\PrintContractHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\PrintContractService\PrintContractService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\SearchContractService\ISearchContractService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\SearchContractService\SearchContractHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\SearchContractService\SearchContractService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\SecondaryTileService\ISecondaryTileService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\SecondaryTileService\SecondaryTileHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\SecondaryTileService\SecondaryTileService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Settings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\SettingsContractService\ISettingsContractService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\SettingsContractService\SettingsContractService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\ShareContractService\IShareContract.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\ShareContractService\ShareContract.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\SolarizrSqlLiteService\ISolarizrSqlLiteService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\SolarizrSqlLiteService\SolarizrSqlLiteService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\BlobService\BlobService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\ToastService\IToastService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\ToastService\ToastHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\ToastService\ToastService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\WebApiService\IWebApiService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\WebApiService\WebApiService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LocalSQLite\IKeyedTable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LocalSQLite\IRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LocalSQLite\RepositoryBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LocalSQLite\SQLite.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LocalSQLite\SQLiteAsync.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AppointmentItemViewModel\AppointmentItemViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AppointmentItemViewModel\AppointmentItemViewModelBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AppointmentItemViewModel\IAppointmentItemViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AppointmentPageViewModel\AppointmentPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AppointmentPageViewModel\IAppointmentPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\HeaderViewModel\HeaderViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\HeaderViewModel\IHeaderViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\LoginPageViewModel\ILoginPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\LoginPageViewModel\LoginPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainPageViewModel\IMainPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainPageViewModel\MainPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SettingsPageViewModel\ISettingsPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SettingsPageViewModel\SettingsPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Header.xaml.cs">
+      <DependentUpon>Header.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Splash.xaml.cs">
+      <DependentUpon>Splash.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\ErrorControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\Loading.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\Header.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\LoginPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\Splash.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\en-US\Resources.resw" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)SampleData\Images\DesignHeroMap.png" />
+    <Content Include="$(MSBuildThisFileDirectory)SampleData\Images\DesignNormalMap.png" />
+    <Content Include="$(MSBuildThisFileDirectory)SampleData\Images\DesignPhoto01.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)SampleData\Images\DesignPhoto02.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)SampleData\Images\DesignPhoto03.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)SampleData\Images\DesignPhoto04.jpg" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<VoiceCommands xmlns="http://schemas.microsoft.com/voicecommands/1.1">
+  <CommandSet xml:lang="en-US">
+
+    <CommandPrefix>Solarizr</CommandPrefix>
+    <Example>Call next appointment</Example>
+
+    <Command Name="Directions">
+      <Example>Drive to Next Appointment</Example>
+      <ListenFor>{direct} [to] Next Appointment</ListenFor>
+      <Feedback>Getting directions…</Feedback>
+      <Navigate />
+    </Command>
+
+    <PhraseList Label="direct">
+      <Item>Get directions</Item>
+      <Item>Drive</Item>
+      <Item>Map</Item>
+      <Item>Go</Item>
+    </PhraseList>
+
+  </CommandSet>
+
+</VoiceCommands>

@@ -1,0 +1,29 @@
+﻿<prism:MvvmAppBase x:Class="Dispatchr.Client.App"
+                   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                   xmlns:Converters="using:Dispatchr.Client.Converters"
+                   xmlns:ViewModels="using:Dispatchr.Client.ViewModels"
+                   xmlns:local="using:Dispatchr.Client"
+                   xmlns:prism="using:Microsoft.Practices.Prism.Mvvm"
+                   RequestedTheme="Dark">
+
+    <Application.Resources>
+        <ResourceDictionary>
+
+            <Converters:VisibleWhenPhoneConverter x:Key="VisibleWhenPhoneConverter" />
+            <Converters:VisibleWhenWindowsConverter x:Key="VisibleWhenWindowsConverter" />
+            <Converters:VisibleWhenFalseConverter x:Key="VisibleWhenFalseConverter" />
+            <Converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+            <Converters:InverseBooleanToVisibilityConverter x:Key="InverseBooleanToVisibilityConverter" />
+            <Converters:StringFormatConverter x:Key="StringFormatConverter" />
+
+            <ResourceDictionary.MergedDictionaries>
+                <!--  include custom dictionaries  -->
+                <ResourceDictionary Source="Styles/Platform.xaml" />
+                <ResourceDictionary Source="Styles/Solarizr.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+        </ResourceDictionary>
+
+    </Application.Resources>
+</prism:MvvmAppBase>

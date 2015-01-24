@@ -1,0 +1,142 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:Converters="using:Dispatchr.Client.Converters"
+                    xmlns:Foundation="using:Windows.Foundation"
+                    xmlns:ViewModels="using:Dispatchr.Client.ViewModels"
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    mc:Ignorable="d">
+    <Converters:MultiplyConverter x:Key="MultiplyConverter" />
+
+    <Converters:DateTimeConverter x:Key="DateTimeConverter" />
+
+    <x:Double x:Key="MapZoom">4</x:Double>
+    <Foundation:Size x:Key="MapSize">414,440</Foundation:Size>
+    <Foundation:Size x:Key="DetailSize">414,220</Foundation:Size>
+    <Foundation:Size x:Key="ItemSize">1,1</Foundation:Size>
+    <Foundation:Size x:Key="HeroSize">828,440</Foundation:Size>
+    <Foundation:Size x:Key="NormalSize">414,110</Foundation:Size>
+
+    <DataTemplate x:Key="HubHeroTemplate">
+        <Grid Width="{Binding Width, Source={StaticResource HeroSize}}"
+              Height="{Binding Height, Source={StaticResource HeroSize}}"
+              d:DataContext="{d:DesignInstance Type=ViewModels:AppointmentItemViewModel}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Rectangle Grid.ColumnSpan="2"
+                       Fill="Black"
+                       Opacity="0.6" />
+            <Image Grid.Column="0"
+                   Source="{Binding Appointment.Map}"
+                   Stretch="UniformToFill" />
+            <Grid Grid.Column="1"
+                  Margin="30,5,20,5"
+                  HorizontalAlignment="Stretch">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0"
+                           HorizontalAlignment="Left"
+                           FontSize="40"
+                           FontWeight="SemiBold"
+                           Text="{Binding Appointment.Date, ConverterParameter=dddd\, MMM dd, Converter={StaticResource DateTimeConverter}}"
+                           TextAlignment="Left"
+                           TextWrapping="Wrap" />
+                <TextBlock Grid.Row="1"
+                           Margin="0,20,0,0"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Bottom"
+                           FontSize="70"
+                           Text="{Binding Appointment.Date, ConverterParameter=hh:mm tt, Converter={StaticResource DateTimeConverter}}"
+                           TextAlignment="Left"
+                           TextWrapping="Wrap" />
+                <TextBlock Grid.Row="2"
+                           Margin="0,20"
+                           FontSize="28"
+                           FontWeight="Light"
+                           Text="{Binding Appointment.Location}"
+                           TextWrapping="WrapWholeWords" />
+                <StackPanel Grid.Row="3"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Bottom"
+                            Orientation="Horizontal">
+                    <AppBarButton Command="{Binding AddToCalendarCommand}" Icon="Calendar" />
+                    <AppBarButton Command="{Binding CallCommand}"
+                                  Icon="Phone"
+                                  Visibility="{Binding Converter={StaticResource VisibleWhenPhoneConverter}}" />
+                    <AppBarButton Command="{Binding GetDirectionsCommand}" Icon="Directions" />
+                    <AppBarButton Command="{Binding NavigateToCommand}" Icon="Edit"
+                                  Visibility="{Binding IsEditing, Converter={StaticResource InverseBooleanToVisibilityConverter}}"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="HubNormalTemplate">
+        <Grid Width="{Binding Width, Source={StaticResource NormalSize}}"
+              Height="{Binding Height, Source={StaticResource NormalSize}}"
+              Background="Transparent"
+              d:DataContext="{d:DesignInstance Type=ViewModels:AppointmentItemViewModel}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0"
+                  Width="102"
+                  Height="102">
+                <Rectangle Fill="Black" Opacity=".6" />
+                <TextBlock HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           FontSize="50"
+                           Text="+"
+                           TextAlignment="Center"
+                           TextLineBounds="Tight" />
+                <Image Source="{Binding Appointment.Map}" Stretch="UniformToFill" />
+            </Grid>
+            <Grid Grid.Column="1"
+                  Margin="30,5,20,5"
+                  HorizontalAlignment="Stretch">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0"
+                           HorizontalAlignment="Left"
+                           FontSize="32"
+                           FontWeight="SemiBold"
+                           Text="{Binding Appointment.Date,
+                                          ConverterParameter=hh:mm tt,
+                                          Converter={StaticResource DateTimeConverter}}"
+                           TextAlignment="Left"
+                           TextWrapping="Wrap" />
+                <TextBlock Grid.Row="0"
+                           Margin="30,0,0,0"
+                           HorizontalAlignment="Right"
+                           VerticalAlignment="Bottom"
+                           FontSize="28"
+                           FontWeight="Light"
+                           Foreground="#FF999999"
+                           Text="{Binding Appointment.Date,
+                                          ConverterParameter=MM/dd/yy,
+                                          Converter={StaticResource DateTimeConverter}}"
+                           TextAlignment="Right"
+                           TextWrapping="Wrap" />
+                <TextBlock Grid.Row="1"
+                           FontSize="20"
+                           FontWeight="Light"
+                           Text="{Binding Appointment.Location}"
+                           TextWrapping="WrapWholeWords" />
+            </Grid>
+        </Grid>
+    </DataTemplate>
+
+    <ImageBrush x:Key="AppBackground"
+                ImageSource="/Assets/Backgrounds/solarizr-bg-with-overlay_2712x1808.png"
+                Stretch="UniformToFill" />
+
+</ResourceDictionary>

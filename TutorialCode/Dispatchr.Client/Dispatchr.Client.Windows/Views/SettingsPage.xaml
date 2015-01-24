@@ -1,0 +1,48 @@
+﻿<SettingsFlyout x:Class="Dispatchr.Client.Views.SettingsPage"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:prismmvvm="using:Microsoft.Practices.Prism.Mvvm"
+                xmlns:designTimeData="using:Dispatchr.Client.DesignTimeData"
+                prismmvvm:ViewModelLocator.AutoWireViewModel="True"
+                Title="Settings"
+                IconSource="Assets/SmallLogo.png"
+                d:DesignWidth="346"
+                mc:Ignorable="d">
+
+    <d:Page.DataContext>
+        <designTimeData:SettingsPageViewModel />
+    </d:Page.DataContext>
+
+    <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}">
+
+            <!-- Content Section 1-->
+            <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}">
+
+                <!-- Section 1 header -->
+                <TextBlock Style="{StaticResource TitleTextBlockStyle}"
+                           Text="Data Settings" />
+
+                <!-- Section 1 body -->
+                <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                           Margin="0,0,0,25"
+                           TextWrapping="Wrap">
+                    <TextBlock.Text>
+                        Controls where Solarizr is pulling data from.
+                    </TextBlock.Text>
+                </TextBlock>
+                <ToggleSwitch Header="Use Local/Sample Data"
+                              IsOn="{Binding LocalOnly, Mode=TwoWay}"
+                              OffContent="Using Service"
+                              OnContent="Using Local" />
+                <Button Command="{Binding LogoutCommand}"
+                        Visibility="{Binding IsLoggedIn, Converter={StaticResource VisibleWhenFalseConverter}}">Log out</Button>
+                <Button Command="{Binding ClearLocalDbCommand}">Clear Local DB</Button>
+
+            </StackPanel>
+        </StackPanel>
+    </StackPanel>
+
+</SettingsFlyout>

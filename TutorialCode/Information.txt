@@ -1,0 +1,64 @@
+Hi.
+
+** For now, I will leave Active Directory working for this demo.
+
+Username: john@solarizr.onmicrosoft.com
+Password: Passw0rd!
+
+** To get Visual Studio 2013 Update 2 working, install:
+
+0. You might need to enable "Restore Nuget" at the SLN leve
+Just right-click the solution and choose "Enable"
+
+1. (Extension) SQLite for Windows Runtime (Windows 8.1)
+http://visualstudiogallery.msdn.microsoft.com/1d04f82f-2fe9-4727-a2f9-a2db127ddc9a/view/
+
+2. (Extension) SQLite for Windows Runtime (Phone 8.1)
+http://visualstudiogallery.msdn.microsoft.com/5d97faf6-39e3-4048-a0bc-adde2af75d1b
+
+3. (Nuget) SQLite-net
+https://github.com/praeclarum/sqlite-net
+
+4. (Extension) Bing Maps SDK for Windows 8.1 Store Apps 
+http://visualstudiogallery.msdn.microsoft.com/224eb93a-ebc4-46ba-9be7-90ee777ad9e1
+
+** For your information:
+
+Get MVVP working
+ (Nuget) Unity
+ (Nuget) Prism.StoreApps
+ (Nuget) PubSubEvents
+Get ADAL/Active Directory Auth working
+ (Nuget) Microsoft.IdentityModel.Clients.ActiveDirectory
+Get Push Notifications working
+ (Nuget) Microsoft.WindowsAzure.Messaging.Managed
+Get BLOB storage working
+ (Nuget) Microsoft.WindowsAzure.Storage
+
+** We used this to configure the service in Azure AD:
+
+"appPermissions": [
+{
+    "claimValue": "user_impersonation",
+    "description": "Allow full access to Solarizr service on behalf of the signed-in user",
+    "directAccessGrantTypes": [],
+    "displayName": "Have full access to Solarizr",
+    "impersonationAccessGrantTypes": [
+        {
+            "impersonated": "User",
+            "impersonator": "Application"
+        }
+    ],
+    "isDisabled": false,
+    "origin": "Application",
+    "permissionId": "b69ee3c9-c40d-4f2a-ac80-961cd1534e40",
+    "resourceScopeType": "Personal",
+    "userConsentDescription": "Allow full access to the Solarizr service on your behalf",
+    "userConsentDisplayName": "Have full access to the Solarizr service"
+    }
+],
+
+Email me: jnixon@microsoft.com
+// thanks for reviewing this demo
+// this is not a reference implementation
+// this is the product of an MVA (Oct 2014)

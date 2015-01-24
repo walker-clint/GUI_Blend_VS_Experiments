@@ -1,0 +1,21 @@
+﻿<Page x:Class="Dispatchr.Client.Views.Splash"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="using:Dispatchr.Client.Views"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <Grid x:Name="MyGrid">
+        <Canvas x:Name="MyCanvas"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch">
+            <Image x:Name="MyImage" />
+        </Canvas>
+        <ProgressBar Width="{Binding ActualWidth, ElementName=MyGrid, Mode=OneWay}"
+                     Height="25"
+                     VerticalAlignment="Bottom"
+                     IsIndeterminate="True" />
+    </Grid>
+
+</Page>

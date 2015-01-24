@@ -1,0 +1,145 @@
+﻿<Page
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:Converters="using:Dispatchr.Client.Converters"
+      xmlns:common="using:Dispatchr.Client.Common"
+      xmlns:controls="using:Dispatchr.Client.Controls"
+      xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+      xmlns:local="using:Dispatchr.Client.Views"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:prismmvvm="using:Microsoft.Practices.Prism.Mvvm"
+      xmlns:designTimeData="using:Dispatchr.Client.DesignTimeData"
+      xmlns:Behaviors="using:Dispatchr.Client.Behaviors" x:Class="Dispatchr.Client.Views.AppointmentPage"
+      prismmvvm:ViewModelLocator.AutoWireViewModel="True"
+      mc:Ignorable="d">
+
+    <Page.Resources>
+        <Converters:VisibleWhenTrueConverter x:Key="VisibleWhenTrueConverter" />
+    </Page.Resources>
+
+    <d:DataContext>
+        <designTimeData:AppointmentPageViewModel />
+    </d:DataContext>
+
+    <Page.BottomAppBar>
+        <CommandBar IsOpen="True"
+                    IsSticky="True">
+
+            <CommandBar.SecondaryCommands>
+                <AppBarButton Command="{Binding RemovePhotoCommand}"
+                              Icon="Remove"
+                              Label="Remove" />
+                <AppBarButton Command="{Binding AddPhotoCommand}"
+                              Icon="Add"
+                              Label="Add" />
+            </CommandBar.SecondaryCommands>
+            <AppBarButton Command="{Binding PinCommand}"
+                          Icon="Pin"
+                          Label="Pin" />
+            <AppBarButton Command="{Binding UnpinCommand}"
+                          Icon="UnPin"
+                          Label="UnPin" />
+            <AppBarSeparator />
+            <AppBarButton Command="{Binding UndoCommand}"
+                          Icon="Undo"
+                          Label="Undo" />
+            <AppBarButton Command="{Binding SaveCommand}"
+                          Icon="Save"
+                          Label="Save" />
+            <AppBarSeparator />
+            <AppBarButton Command="{Binding SubmitCommand}"
+                          Icon="Upload"
+                          Label="Submit" />
+
+        </CommandBar>
+
+    </Page.BottomAppBar>
+
+	<interactivity:Interaction.Behaviors>
+		<Behaviors:KeyNavBehavior/>
+	</interactivity:Interaction.Behaviors>
+
+	<Grid Background="{StaticResource AppBackground}">
+		<Hub Margin="0,40,0,0">
+			<HubSection Header="LOCATION">
+				<DataTemplate>
+					<ContentControl ContentTemplate="{StaticResource HubHeroTemplate}" />
+				</DataTemplate>
+			</HubSection>
+			<HubSection Header="PHOTOS">
+				<DataTemplate>
+					<GridView x:Name="PhotoGridView"
+						ItemsSource="{Binding Photos}"
+						SelectedItem="{Binding SelectedPhoto, Mode=TwoWay}">
+						<common:ItemsControlHelper.EmptyListTemplate>
+							<ControlTemplate>
+								<Grid Width="220"
+									Height="220">
+									<interactivity:Interaction.Behaviors>
+										<core:EventTriggerBehavior EventName="Tapped">
+											<core:InvokeCommandAction Command="{Binding AddPhotoCommand, Mode=OneWay}" />
+										</core:EventTriggerBehavior>
+									</interactivity:Interaction.Behaviors>
+
+									<Rectangle Fill="Black"
+										Opacity=".6" />
+									<TextBlock HorizontalAlignment="Center"
+										VerticalAlignment="Center"
+										FontSize="50"
+										Text="+"
+										TextAlignment="Center"
+										TextLineBounds="Tight" />
+
+								</Grid>
+							</ControlTemplate>
+						</common:ItemsControlHelper.EmptyListTemplate>
+						<GridView.ItemTemplate>
+							<DataTemplate>
+								<Image Width="220"
+									Height="220"
+									Source="{Binding ImageSource}"
+									Stretch="UniformToFill" />
+							</DataTemplate>
+						</GridView.ItemTemplate>
+					</GridView>
+				</DataTemplate>
+			</HubSection>
+			<HubSection Header="SURVEY">
+				<DataTemplate>
+					<StackPanel x:Name="Container">
+						<controls:ErrorControl Model="{Binding Appointment}"
+							Placement="Right"
+							PropertyName="StatusId">
+							<controls:ErrorControl.InnerContent>
+								<ComboBox DisplayMemberPath="Name"
+									Header="status"
+									ItemsSource="{Binding Statuses}"
+									SelectedValue="{Binding Appointment.StatusId, Mode=TwoWay}"
+									SelectedValuePath="Id" />
+							</controls:ErrorControl.InnerContent>
+						</controls:ErrorControl>
+						<controls:ErrorControl Model="{Binding Appointment}"
+							Placement="Right"
+							PropertyName="Details">
+							<controls:ErrorControl.InnerContent>
+								<TextBox Width="{Binding Width, Source={StaticResource DetailSize}}"
+									Height="{Binding Height, Source={StaticResource DetailSize}}"
+									Header="comments"
+									Text="{Binding Appointment.Details, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+									TextWrapping="Wrap" />
+							</controls:ErrorControl.InnerContent>
+						</controls:ErrorControl>
+					</StackPanel>
+				</DataTemplate>
+			</HubSection>
+		</Hub>
+		<local:Header DataContext="{Binding HeaderViewModel}"
+			d:IsHidden="True" />
+		<controls:Loading Text="{Binding SubmittingInfo}"
+			Visibility="{Binding Submitting, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}"
+			d:IsHidden="True" />
+	</Grid>
+
+</Page>

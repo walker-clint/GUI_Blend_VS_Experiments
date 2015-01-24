@@ -1,0 +1,221 @@
+﻿<Page x:Class="Dispatchr.Client.Views.AppointmentPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:common="using:Dispatchr.Client.Common"
+      xmlns:controls="using:Dispatchr.Client.Controls"
+      xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:prismmvvm="using:Microsoft.Practices.Prism.Mvvm"
+      xmlns:designTimeData="using:Dispatchr.Client.DesignTimeData"
+      d:DataContext="{d:DesignInstance designTimeData:AppointmentPageViewModel}"
+      prismmvvm:ViewModelLocator.AutoWireViewModel="True"
+      mc:Ignorable="d">
+    <Page.Resources>
+        <Style x:Key="LabelTextBlockStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="Foreground" Value="LightGray" />
+        </Style>
+        <Style x:Key="ValueTextBlockStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="20" />
+        </Style>
+    </Page.Resources>
+
+    <Page.BottomAppBar>
+        <CommandBar>
+            <CommandBar.SecondaryCommands>
+                <AppBarButton x:Name="SecondaryPinAppBarButton"
+                              Command="{Binding PinCommand}"
+                              Icon="Pin"
+                              Label="Pin" />
+                <AppBarButton x:Name="SecondaryUnPinAppBarButton"
+                              Command="{Binding UnpinCommand}"
+                              Icon="UnPin"
+                              Label="UnPin" />
+            </CommandBar.SecondaryCommands>
+            <AppBarButton x:Name="CallAppBarButton"
+                          Command="{Binding CallCommand}"
+                          Icon="Phone"
+                          Label="Phone" />
+            <AppBarButton x:Name="GetDirectionsAppBarButton"
+                          Command="{Binding GetDirectionsCommand}"
+                          Icon="Directions"
+                          Label="Directions" />
+            <AppBarButton x:Name="RemovePhotoAppBarButton"
+                          Command="{Binding RemovePhotoCommand}"
+                          Icon="Remove"
+                          Label="Remove" />
+            <AppBarButton x:Name="AddPhotoAppBarButton"
+                          Command="{Binding AddPhotoCommand}"
+                          Icon="Add"
+                          Label="Add" />
+            <AppBarSeparator />
+            <AppBarButton x:Name="UndoAppBarButton"
+                          Command="{Binding UndoCommand}"
+                          Icon="Undo"
+                          Label="Undo" />
+            <AppBarButton x:Name="SaveAppBarButton"
+                          Command="{Binding SaveCommand}"
+                          Icon="Save"
+                          Label="Save" />
+            <AppBarSeparator />
+            <AppBarButton x:Name="UploadAppBarButton"
+                          Command="{Binding SubmitCommand}"
+                          Icon="Upload"
+                          Label="Submit" />
+        </CommandBar>
+    </Page.BottomAppBar>
+
+    <Grid Background="{StaticResource AppBackground}">
+        <Pivot Padding="0" SelectionChanged="Pivot_OnSelectionChanged">
+            <Pivot.TitleTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <Image Margin="0,-30,0,0"
+                               HorizontalAlignment="Left"
+                               Source="/Assets/Logos/PhoneLogo.png"
+                               Stretch="None" />
+                        <TextBlock FontSize="30" Text="{Binding Appointment.Date, ConverterParameter=\{0:dddd\, MMM dd\}, Converter={StaticResource StringFormatConverter}}" />
+                    </StackPanel>
+                </DataTemplate>
+            </Pivot.TitleTemplate>
+            <Pivot.HeaderTemplate>
+                <DataTemplate>
+                    <TextBlock FontSize="40"
+                               FontWeight="Light"
+                               Text="{Binding}" />
+                </DataTemplate>
+            </Pivot.HeaderTemplate>
+            <PivotItem Header="location">
+                <ScrollViewer>
+                    <StackPanel>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="150" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Image Source="{Binding Appointment.Map}" Stretch="UniformToFill" />
+                            <StackPanel Grid.Column="1" Margin="20,0,0,0">
+                                <TextBlock FontSize="40" Text="{Binding Appointment.Date, Converter={StaticResource StringFormatConverter}, ConverterParameter=\{0:hh:mmtt\}}" />
+                                <TextBlock FontSize="20" Text="{Binding Appointment.Location}" TextWrapping="WrapWholeWords" />
+                            </StackPanel>
+                        </Grid>
+
+                        <TextBlock Margin="0,40,0,0"
+                                   FontSize="40"
+                                   Text="Details" />
+                        <TextBlock FontSize="20"
+                                   Text="{Binding Appointment.Details}"
+                                   TextWrapping="WrapWholeWords" />
+                    </StackPanel>
+                </ScrollViewer>
+            </PivotItem>
+            <PivotItem Header="photos">
+                <GridView x:Name="PhotoGridView"
+                          ItemsSource="{Binding Photos}"
+                          SelectedItem="{Binding SelectedPhoto,
+                                                 Mode=TwoWay}"
+                          SelectionMode="Single">
+                    <common:ItemsControlHelper.EmptyListTemplate>
+                        <ControlTemplate>
+                            <Grid Width="150"
+                                  Height="150"
+                                  HorizontalAlignment="Left"
+                                  VerticalAlignment="Top">
+                                <interactivity:Interaction.Behaviors>
+                                    <core:EventTriggerBehavior EventName="Tapped">
+                                        <core:InvokeCommandAction Command="{Binding AddPhotoCommand, Mode=OneWay}" />
+                                    </core:EventTriggerBehavior>
+                                </interactivity:Interaction.Behaviors>
+
+                                <Rectangle Fill="Black" Opacity=".6" />
+                                <TextBlock HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           FontSize="50"
+                                           Text="+"
+                                           TextAlignment="Center"
+                                           TextLineBounds="Tight" />
+
+                            </Grid>
+                        </ControlTemplate>
+                    </common:ItemsControlHelper.EmptyListTemplate>
+                    <GridView.ItemTemplate>
+                        <DataTemplate>
+                            <Image Width="150"
+                                   Height="150"
+                                   Margin="10"
+                                   Source="{Binding ImageSource}"
+                                   Stretch="Uniform" />
+                        </DataTemplate>
+                    </GridView.ItemTemplate>
+                </GridView>
+            </PivotItem>
+            
+            <PivotItem Header="survey">
+                <StackPanel>
+                    <controls:ErrorControl Model="{Binding Appointment}"
+                                           Placement="Right"
+                                           PropertyName="StatusId">
+                        <controls:ErrorControl.InnerContent>
+                            <ComboBox DisplayMemberPath="Name"
+                                      Header="status"
+                                      ItemsSource="{Binding Statuses}"
+                                      SelectedValue="{Binding Appointment.StatusId,
+                                                              Mode=TwoWay}"
+                                      SelectedValuePath="Id" />
+                        </controls:ErrorControl.InnerContent>
+                    </controls:ErrorControl>
+
+                    <controls:ErrorControl Model="{Binding Appointment}"
+                                           Placement="Right"
+                                           PropertyName="Details">
+                        <controls:ErrorControl.InnerContent>
+                            <TextBox Header="comments"
+                                     Text="{Binding Appointment.Details,
+                                                    Mode=TwoWay,
+                                                    UpdateSourceTrigger=PropertyChanged}"
+                                     TextWrapping="Wrap" />
+                        </controls:ErrorControl.InnerContent>
+                    </controls:ErrorControl>
+                </StackPanel>
+            </PivotItem>
+            <PivotItem Header="submit">
+                <ScrollViewer>
+                    <StackPanel>
+                        <TextBlock Style="{StaticResource LabelTextBlockStyle}" Text="photos" />
+                        <ScrollViewer HorizontalScrollBarVisibility="Visible" HorizontalScrollMode="Enabled">
+                            <ListView Height="150" ItemsSource="{Binding Photos}">
+                                <ListView.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <VirtualizingStackPanel Orientation="Horizontal" />
+                                    </ItemsPanelTemplate>
+                                </ListView.ItemsPanel>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Image Width="150"
+                                               Height="150"
+                                               Margin="0,0,20,0"
+                                               Source="{Binding ImageSource}"
+                                               Stretch="Uniform" />
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </ScrollViewer>
+                        <TextBlock Margin="0,10,0,0"
+                                   Style="{StaticResource LabelTextBlockStyle}"
+                                   Text="status" />
+                        <TextBlock Style="{StaticResource ValueTextBlockStyle}" Text="{Binding Statuses[0].Name}" />
+                        <TextBlock Margin="0,20,0,0"
+                                   Style="{StaticResource LabelTextBlockStyle}"
+                                   Text="comments" />
+                        <TextBlock Width="362"
+                                   Style="{StaticResource ValueTextBlockStyle}"
+                                   Text="{Binding Appointment.Details}"
+                                   TextWrapping="WrapWholeWords" />
+                    </StackPanel>
+                </ScrollViewer>
+            </PivotItem>
+        </Pivot>
+    </Grid>
+</Page>
