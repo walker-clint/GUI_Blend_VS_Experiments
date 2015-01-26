@@ -1,0 +1,42 @@
+﻿<Page
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ProofOffConcept"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Interactivity="using:System.Windows.Interactivity"
+    x:Class="ProofOffConcept.BlankPage1"
+    mc:Ignorable="d">
+	<Page.Resources>
+		<Color x:Key="Color1">#FF0B0B70</Color>
+		<Color x:Key="Color2">#FF63ACCF</Color>
+		<Color x:Key="Color3">#FFA3A9B2</Color>
+	</Page.Resources>
+
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<Rectangle HorizontalAlignment="Left" Height="271" Margin="259,209,0,0" Stroke="Black" VerticalAlignment="Top" Width="199">
+			<Rectangle.Fill>
+				<SolidColorBrush Color="{StaticResource Color3}"/>
+			</Rectangle.Fill>
+		</Rectangle>
+
+		<Rectangle x:Name="rectangle" HorizontalAlignment="Left" Height="235" VerticalAlignment="Bottom" Width="172" Margin="272,0,0,334" Fill="#FF63ACCF" RenderTransformOrigin="0.5,0.5">
+			<Rectangle.RenderTransform>
+				<CompositeTransform TranslateY="1" Rotation="-360"/>
+			</Rectangle.RenderTransform>
+			<Rectangle.Projection>
+				<PlaneProjection LocalOffsetY="1"/>
+			</Rectangle.Projection>
+			<Rectangle.Stroke>
+				<SolidColorBrush Color="{StaticResource Color1}"/>
+			</Rectangle.Stroke>
+		</Rectangle>
+		<Button x:Name="UP" Content="UP" HorizontalAlignment="Left" Margin="125,248,0,0" VerticalAlignment="Top" ManipulationMode="{Binding ManipulationMode, ElementName=rectangle}" ContentTransitions="{Binding Transitions, ElementName=rectangle}">
+			<Button.DataContext>
+				<Interactivity:CustomPropertyValueEditor>Element</Interactivity:CustomPropertyValueEditor>
+			</Button.DataContext>
+		</Button>
+		<Button Content="Button" HorizontalAlignment="Left" Margin="125,296,0,0" VerticalAlignment="Top"/>
+
+	</Grid>
+</Page>

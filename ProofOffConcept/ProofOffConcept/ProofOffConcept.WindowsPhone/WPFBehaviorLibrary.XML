@@ -1,0 +1,187 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WPFBehaviorLibrary</name>
+    </assembly>
+    <members>
+        <member name="T:WPFBehaviorLibrary.DragDropBehavior.DragAdorner">
+            <summary>
+            Handles the visual display of the item as it's being dragged
+            </summary>
+        </member>
+        <member name="M:WPFBehaviorLibrary.DragDropBehavior.DragAdorner.#ctor(System.Object,System.Windows.DataTemplate,System.Windows.UIElement,System.Windows.Documents.AdornerLayer)">
+            <summary>
+            Initializes a new instance of the <see cref="T:WPFBehaviorLibrary.DragDropBehavior.DragAdorner"/> class.
+            </summary>
+            <param name="data">The data that's being dragged.</param>
+            <param name="dataTemplate">The data template to show while dragging.</param>
+            <param name="adornedElement">The adorned element.</param>
+            <param name="adornerLayer">The adorner layer.</param>
+        </member>
+        <member name="M:WPFBehaviorLibrary.DragDropBehavior.DragAdorner.MeasureOverride(System.Windows.Size)">
+            <summary>
+            Implements any custom measuring behavior for the adorner.
+            </summary>
+            <param name="constraint">A size to constrain the adorner to.</param>
+            <returns>
+            A <see cref="T:System.Windows.Size"/> object representing the amount of layout space needed by the adorner.
+            </returns>
+        </member>
+        <member name="M:WPFBehaviorLibrary.DragDropBehavior.DragAdorner.ArrangeOverride(System.Windows.Size)">
+            <summary>
+            When overridden in a derived class, positions child elements and determines a size for a <see cref="T:System.Windows.FrameworkElement"/> derived class.
+            </summary>
+            <param name="finalSize">The final area within the parent that this element should use to arrange itself and its children.</param>
+            <returns>The actual size used.</returns>
+        </member>
+        <member name="M:WPFBehaviorLibrary.DragDropBehavior.DragAdorner.GetVisualChild(System.Int32)">
+            <summary>
+            Overrides <see cref="M:System.Windows.Media.Visual.GetVisualChild(System.Int32)"/>, and returns a child at the specified index from a collection of child elements.
+            </summary>
+            <param name="index">The zero-based index of the requested child element in the collection.</param>
+            <returns>
+            The requested child element. This should not return null; if the provided index is out of range, an exception is thrown.
+            </returns>
+        </member>
+        <member name="M:WPFBehaviorLibrary.DragDropBehavior.DragAdorner.UpdatePosition(System.Double,System.Double)">
+            <summary>
+            Updates the position of the adorner relative to the adorner layer.
+            </summary>
+            <param name="left">The offset from the left.</param>
+            <param name="top">The offset from the top.</param>
+        </member>
+        <member name="M:WPFBehaviorLibrary.DragDropBehavior.DragAdorner.GetDesiredTransform(System.Windows.Media.GeneralTransform)">
+            <summary>
+            Returns a <see cref="T:System.Windows.Media.Transform"/> for the adorner, based on the transform that is currently applied to the adorned element.
+            </summary>
+            <param name="transform">The transform that is currently applied to the adorned element.</param>
+            <returns>A transform to apply to the adorner.</returns>
+        </member>
+        <member name="M:WPFBehaviorLibrary.DragDropBehavior.DragAdorner.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="M:WPFBehaviorLibrary.DragDropBehavior.DragAdorner.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources
+            </summary>
+            <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        </member>
+        <member name="P:WPFBehaviorLibrary.DragDropBehavior.DragAdorner.VisualChildrenCount">
+            <summary>
+            Gets the number of visual child elements within this element.
+            </summary>
+            <value></value>
+            <returns>
+            The number of visual child elements for this element.
+            </returns>
+        </member>
+        <member name="T:WPFBehaviorLibrary.DragDropBehavior.DropAdorner">
+            <summary>
+            Handles the visual indication of the drop point
+            </summary>
+        </member>
+        <member name="M:WPFBehaviorLibrary.DragDropBehavior.DropAdorner.#ctor(System.Boolean,System.Boolean,System.Windows.UIElement,System.Windows.Documents.AdornerLayer)">
+            <summary>
+            Initializes a new instance of the <see cref="T:WPFBehaviorLibrary.DragDropBehavior.DropAdorner"/> class.
+            </summary>
+            <param name="isTopHalf">if set to <c>true</c> we are adorning the top half of the item.</param>
+            <param name="drawHorizontal">if set to <c>true</c> the item being adorned has a horizontal orientation.</param>
+            <param name="adornedElement">The adorned element.</param>
+            <param name="adornerLayer">The adorner layer.</param>
+        </member>
+        <member name="M:WPFBehaviorLibrary.DragDropBehavior.DropAdorner.OnRender(System.Windows.Media.DrawingContext)">
+            <summary>
+            When overridden in a derived class, participates in rendering operations that are directed by the layout system. The rendering instructions for this element are not used directly when this method is invoked, and are instead preserved for later asynchronous use by layout and drawing.
+            </summary>
+            <param name="drawingContext">The drawing instructions for a specific element. This context is provided to the layout system.</param>
+        </member>
+        <member name="M:WPFBehaviorLibrary.DragDropBehavior.DropAdorner.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="M:WPFBehaviorLibrary.DragDropBehavior.DropAdorner.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources
+            </summary>
+            <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        </member>
+        <member name="T:WPFBehaviorLibrary.DragDropBehavior.DragDropBehavior">
+            <summary>
+            An attached behavior that allows you to drag and drop items among various ItemsControls, e.g. ItemsControl, ListBox, TabControl, etc.
+            </summary>
+        </member>
+        <member name="M:WPFBehaviorLibrary.DragDropBehavior.DragDropBehavior.OnAttached">
+            <summary>
+            Called when attached to an ItemsControl.
+            </summary>
+        </member>
+        <member name="M:WPFBehaviorLibrary.DragDropBehavior.DragDropBehavior.AddItem(System.Windows.Controls.ItemsControl,System.Object,System.Int32)">
+            <summary>
+            Called when an item is added to <paramref name="itemsControl"/>.
+            </summary>
+            <param name="itemsControl">The items control <paramref name="item"/> is to be added to.</param>
+            <param name="item">The item to be added.</param>
+            <param name="insertIndex">Index <paramref name="item"/> should be inserted at.</param>
+        </member>
+        <member name="M:WPFBehaviorLibrary.DragDropBehavior.DragDropBehavior.RemoveItem(System.Windows.Controls.ItemsControl,System.Object)">
+            <summary>
+            Removes the item from <paramref name="itemsControl"/>.
+            </summary>
+            <param name="itemsControl">The items control to remove <paramref name="itemToRemove"/> from.</param>
+            <param name="itemToRemove">The item to remove.</param>
+        </member>
+        <member name="M:WPFBehaviorLibrary.DragDropBehavior.DragDropBehavior.CanDrag(System.Windows.Controls.ItemsControl,System.Object)">
+            <summary>
+            Determines whether <paramref name="item"/> can be dragged from or within the specified items control.
+            </summary>
+            <param name="itemsControl">The drag source.</param>
+            <param name="item">The item to be dragged.</param>
+            <returns>
+            	<c>true</c> if <paramref name="item"/> can be dragged; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:WPFBehaviorLibrary.DragDropBehavior.DragDropBehavior.CanDrop(System.Windows.Controls.ItemsControl,System.Object)">
+            <summary>
+            Determines whether <paramref name="item"/> can be dropped onto the specified items control.
+            </summary>
+            <param name="itemsControl">The drop target.</param>
+            <param name="item">The item that would be dropped.</param>
+            <returns>
+            	<c>true</c> if <paramref name="item"/> can be dropped; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:WPFBehaviorLibrary.DragDropBehavior.DragDropBehavior.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="M:WPFBehaviorLibrary.DragDropBehavior.DragDropBehavior.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources
+            </summary>
+            <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        </member>
+        <member name="P:WPFBehaviorLibrary.DragDropBehavior.DragDropBehavior.ItemType">
+            <summary>
+            Gets or sets the type of the items in the ItemsControl. 
+            </summary>
+            <value>The type of the item.</value>
+        </member>
+        <member name="P:WPFBehaviorLibrary.DragDropBehavior.DragDropBehavior.DataTemplate">
+            <summary>
+            Gets or sets the data template of the items to use while dragging. 
+            </summary>
+            <value>The data template.</value>
+        </member>
+        <member name="P:WPFBehaviorLibrary.DragDropBehavior.DragDropBehavior.DropIndication">
+            <summary>
+            Gets or sets the drop indication.
+            </summary>
+            <value>The drop indication.</value>
+            <remarks>The default is vertical.</remarks>
+        </member>
+    </members>
+</doc>
