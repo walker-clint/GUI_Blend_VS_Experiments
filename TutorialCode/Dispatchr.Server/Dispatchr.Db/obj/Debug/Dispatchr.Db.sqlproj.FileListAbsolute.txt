@@ -1,0 +1,5 @@
+D:\Users\clint\Documents\GitHub\GUI_Blend_VS_Experiments\TutorialCode\Dispatchr.Server\Dispatchr.Db\bin\Debug\Dispatchr.Db.dacpac
+D:\Users\clint\Documents\GitHub\GUI_Blend_VS_Experiments\TutorialCode\Dispatchr.Server\Dispatchr.Db\bin\Debug\Dispatchr.Db.dll
+D:\Users\clint\Documents\GitHub\GUI_Blend_VS_Experiments\TutorialCode\Dispatchr.Server\Dispatchr.Db\bin\Debug\Dispatchr.Db.pdb
+D:\Users\clint\Documents\GitHub\GUI_Blend_VS_Experiments\TutorialCode\Dispatchr.Server\Dispatchr.Db\obj\Debug\Dispatchr.Db.dll
+D:\Users\clint\Documents\GitHub\GUI_Blend_VS_Experiments\TutorialCode\Dispatchr.Server\Dispatchr.Db\obj\Debug\Dispatchr.Db.pdb
